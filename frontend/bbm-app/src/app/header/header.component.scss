@@ -1,0 +1,35 @@
+/* header.component.scss */
+// $edit-mode-background-color: 
+
+.header-toolbar {
+
+    position: relative; // Ensure it's positioned correctly
+    z-index: 1; // Raise the z-index to bring it in front of other elements
+    display: flex;
+    background-color: black; // Explicitly set the background color for the toolbar
+    color: white; // Assuming you want white text on the black background
+    padding: 8px;
+
+    .header-title {
+        flex-grow: 1;
+        text-align: center; // Centers the title text
+        font-size: 38px; // Increases the font size, adjust as needed
+        letter-spacing: 3.2px; // Adds spacing between letters, adjust as needed
+    }
+
+    .mat-icon {
+        margin-left: auto; // Pushes the button to the right
+        line-height: 1; // Reset line-height to prevent affecting the icon's alignment
+        cursor: pointer;
+        font-size: 48px; // Set the icon size. Ensure you include 'px'
+        height: 48px; // Match the height to the font-size to ensure the icon's container is large enough
+        width: 48px; // Match the width to ensure proper sizing
+    }
+
+}
+
+// Example style changes for edit mode
+.edit-mode {
+    background: #00BCD4; // Define this color variable in your styles.scss or use a color directly
+}
+
