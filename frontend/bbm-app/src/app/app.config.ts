@@ -1,9 +1,22 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { BrowserModule } from '@angular/platform-browser';
+import { StoreModule } from '@ngrx/store';
+// import { userReducer } from './store/user/user.reducer';
+import { reducers } from './store'; // This should import your combined reducers
+
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimationsAsync()]
+    providers: [
+        NoopAnimationsModule,
+        provideRouter(routes),
+        provideAnimationsAsync(),
+        importProvidersFrom(
+            BrowserModule,
+             StoreModule.forRoot(reducers),
+        ),
+    ]
 };

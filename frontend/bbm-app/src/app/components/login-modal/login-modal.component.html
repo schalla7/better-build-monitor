@@ -1,0 +1,31 @@
+<!-- login-modal.component.html -->
+<h2 mat-dialog-title>BBM User Login</h2>
+
+<mat-dialog-content>
+  
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input #emailInput matInput formControlName="email" type="email" required autocomplete="username">
+
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password" required autocomplete="current-password">
+    </mat-form-field>
+
+    <button mat-button type="submit">Login</button>
+
+    <!-- Inside your login modal template -->
+    <p *ngIf="loginError" class="error">{{ loginError }}</p>
+
+
+  </form>
+
+</mat-dialog-content>
+
+<!-- <mat-dialog-actions align="end">
+  <button mat-button (click)="onForgotPassword()">Forgot password?</button>
+</mat-dialog-actions> -->

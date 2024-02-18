@@ -18,12 +18,33 @@
     }
 
     .mat-icon {
-        margin-left: auto; // Pushes the button to the right
-        line-height: 1; // Reset line-height to prevent affecting the icon's alignment
         cursor: pointer;
+        margin-left: 16px; // Pushes the button to the right
+        margin-top: 8px;
+        line-height: 1; // Reset line-height to prevent affecting the icon's alignment
+        
         font-size: 48px; // Set the icon size. Ensure you include 'px'
         height: 48px; // Match the height to the font-size to ensure the icon's container is large enough
         width: 48px; // Match the width to ensure proper sizing
+
+        .account-icon {
+            margin-left: 16px; // Pushes the button to the right
+            margin-top: 8px;
+        }
+
+        .edit-icon {
+            margin-left: 16px; // Pushes the button to the right
+            margin-top: 8px;
+        }
+    }
+
+    
+
+    .spacer {
+        height: 48px; // Match the height to the font-size to ensure the icon's container is large enough
+        width: 48px; // Match the width to ensure proper sizing
+        margin-left: 16px; // Pushes the button to the right
+        margin-top: 8px;
     }
 
 }

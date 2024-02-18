@@ -1,0 +1,49 @@
+<!-- header.component.html -->
+<mat-toolbar color="primary" class="header-toolbar" [class.edit-mode]="editModeOn">
+    
+    <div class="spacer"></div> <!-- Invisible spacer -->
+    <div class="spacer"></div> <!-- Invisible spacer -->
+    <div class="spacer"></div> <!-- Invisible spacer -->
+
+    
+    <div class="spacer"></div> <!-- Invisible spacer -->
+    <div class="spacer"></div> <!-- Invisible spacer -->
+    <div class="spacer"></div> <!-- Invisible spacer -->
+    <div class="spacer"></div> <!-- Invisible spacer -->
+    <div class="spacer"></div> <!-- Invisible spacer -->
+    <div class="spacer"></div> <!-- Invisible spacer -->
+    <div class="spacer"></div> <!-- Invisible spacer -->
+    
+    <span class="header-title">Better Build Monitor</span>
+
+
+    <span *ngIf="hasEditPermission">
+        <mat-icon *ngIf="hasEditPermission" mat-icon edit-icon (click)="toggleEditMode(editModeOn)">edit</mat-icon>    
+        <mat-icon *ngIf="editModeOn">add</mat-icon>    
+        <mat-icon *ngIf="editModeOn">add</mat-icon>    
+        <mat-icon *ngIf="editModeOn">add</mat-icon>    
+        <mat-icon *ngIf="editModeOn">add</mat-icon>    
+        <mat-icon *ngIf="editModeOn">add</mat-icon>
+    </span> 
+    <div class="spacer" *ngIf="isEditModeOn()"></div> <!-- Invisible spacer -->
+
+
+    <div class="spacer" *ngIf="!isEditModeOn()"></div> <!-- Invisible spacer -->
+    <div class="spacer" *ngIf="!isEditModeOn()"></div> <!-- Invisible spacer -->
+    <div class="spacer" *ngIf="!isEditModeOn()"></div> <!-- Invisible spacer -->
+    <div class="spacer" *ngIf="!isEditModeOn()"></div> <!-- Invisible spacer -->
+    <div class="spacer" *ngIf="!isEditModeOn()"></div> <!-- Invisible spacer -->
+    <div class="spacer" *ngIf="!isEditModeOn()"></div> <!-- Invisible spacer -->
+    
+
+    <div class="spacer"></div> <!-- Invisible spacer -->
+    <div class="spacer"></div> <!-- Invisible spacer -->
+    <div class="spacer"></div> <!-- Invisible spacer -->
+
+    <span>
+        <mat-icon mat-icon account-icon (click)="toggleAccountModal()">account_circle</mat-icon>
+    </span>
+    
+    
+
+</mat-toolbar>
