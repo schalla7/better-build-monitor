@@ -41,7 +41,14 @@
     <div class="spacer"></div> <!-- Invisible spacer -->
 
     <span>
-        <mat-icon mat-icon account-icon (click)="toggleAccountModal()">account_circle</mat-icon>
+        <mat-icon 
+            mat-icon account-icon 
+            [ngStyle]="{ 'color': isAuthenticated ? '#007FFF' : 'grey'  }"
+            (click)="toggleAccountModal()"
+            >{{ use_account_icon }}
+        </mat-icon>
+        <!-- <mat-icon *ngIf="!isAuthenticated mat-icon account-icon">account_circle</mat-icon>
+        <mat-icon *ngIf="isAuthenticated" mat-icon account-icon>verified_user</mat-icon> -->
     </span>
     
     

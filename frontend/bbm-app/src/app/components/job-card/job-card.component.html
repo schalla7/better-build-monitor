@@ -1,1 +1,30 @@
-<p>job-card works!</p>
+<div class="job-card">
+  <h2>{{ jobCard.label_title }}</h2>
+  <p>{{ jobCard.label_description }}</p>
+  
+  <div class="source-link">
+    <a [href]="jobCard.source_link.joburl" target="_blank">{{ jobCard.source_link.host }}/{{ jobCard.source_link.jobname }}</a>
+  </div>
+  
+  <div class="job-status" [ngClass]="jobCard.build.running_status">
+    Status: {{ jobCard.build.running_status }}
+    <span *ngIf="jobCard.build.completion_result">({{ jobCard.build.completion_result }})</span>
+  </div>
+  
+  <div class="build-info">
+    <div>Build #: {{ jobCard.build.build_number }}</div>
+    <div>Start Time: {{ jobCard.build.start_time | date:'medium' }}</div>
+    <div *ngIf="jobCard.build.end_time">End Time: {{ jobCard.build.end_time | date:'medium' }}</div>
+  </div>
+  
+  <div class="view">
+    Position: {{ jobCard.view.gridpos }} in {{ jobCard.view.group_label }}
+  </div>
+  
+  <div class="stats">
+    <div>Last Green: {{ jobCard.stats.last_green_days_ago }} days ago</div>
+    <div>Consecutive Successes: {{ jobCard.stats.consecutive_successes }}</div>
+    <div>Last Red: {{ jobCard.stats.last_red_days_ago }} days ago</div>
+    <div>Consecutive Failures: {{ jobCard.stats.consecutive_failures }}</div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+.job-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.job-card h2 {
+    margin-top: 0;
+}
+
+.source-link a {
+    color: #007bff;
+}
+
+.job-status {
+    margin-top: 8px;
+}
+
+.job-status.completed {
+    color: green;
+}
+
+.job-status.busy_running {
+    color: orange;
+}
+
+.build-info,
+.view,
+.stats {
+    margin-top: 8px;
+}
+
+.stats div {
+    margin-top: 4px;
+}

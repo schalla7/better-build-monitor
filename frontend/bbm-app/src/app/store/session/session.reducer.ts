@@ -1,6 +1,6 @@
 // src/app/store/session.reducer.ts
 import { createReducer, on } from '@ngrx/store';
-import { ISession } from './session.interface';
+import { ISession } from '../../interfaces/session.interface';
 import { setIsEditModeOn } from './session.actions';
 
 export const initialSessionState: ISession = {

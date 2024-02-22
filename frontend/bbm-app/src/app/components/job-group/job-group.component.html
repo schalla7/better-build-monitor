@@ -1,1 +1,21 @@
-<p>job-group works!</p>
+<!-- job-group.component.html -->
+<div cdkDropListGroup>
+  <div cdkDropList [cdkDropListData]="jobCards" class="job-cards-container" (cdkDropListDropped)="drop($event)">
+    <div *ngFor="let card of jobCards" cdkDrag>
+      
+      <!-- Conditionally display content based on editing state -->
+      <ng-container *ngIf="card.isEditing; else viewMode">
+        
+        <!-- Editing mode content (e.g., input field) -->
+        <!-- <input type="text" [(ngModel)]="card.placeholder"> -->
+      </ng-container>
+      
+      <ng-template #viewMode>
+        <!-- View mode content -->
+        {{ card.placeholder }}
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<!-- <button (click)="addCard()">Add Card</button> -->

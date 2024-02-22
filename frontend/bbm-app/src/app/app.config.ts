@@ -5,8 +5,8 @@ import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
-// import { userReducer } from './store/user/user.reducer';
 import { reducers } from './store'; // This should import your combined reducers
+import { NgModel } from '@angular/forms';
 
 
 export const appConfig: ApplicationConfig = {
@@ -18,5 +18,6 @@ export const appConfig: ApplicationConfig = {
             BrowserModule,
              StoreModule.forRoot(reducers),
         ),
+        NgModel,
     ]
 };

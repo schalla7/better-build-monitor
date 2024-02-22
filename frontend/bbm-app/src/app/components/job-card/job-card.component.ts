@@ -1,12 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IJobCard } from '../../interfaces/jobcard.interface';
+import { NgClass, NgIf } from '@angular/common';
+import { DatePipe } from '@angular/common';
 
+// In job-card.component.ts
 @Component({
   selector: 'app-job-card',
-  standalone: true,
-  imports: [],
   templateUrl: './job-card.component.html',
-  styleUrl: './job-card.component.scss'
+  styleUrls: ['./job-card.component.scss'],
+  standalone: true,
+  imports: [
+    NgClass,
+    NgIf,
+    DatePipe
+  ]
 })
 export class JobCardComponent {
+  @Input() jobCard!: IJobCard;
+
 
 }

@@ -36,8 +36,22 @@
             margin-left: 16px; // Pushes the button to the right
             margin-top: 8px;
         }
+
+        
     }
 
+    .icon-border {
+        color: #007FFF;
+        /* Azure Radiance for the icon */
+        border: 2px solid #C0C0C0;
+        /* Silver border */
+        border-radius: 50%;
+        /* Optional: for circular icons */
+        padding: 5px;
+        /* Adjust based on icon size and desired border thickness */
+        display: inline-block;
+        /* Or flex, depending on your layout */
+    }
     
 
     .spacer {

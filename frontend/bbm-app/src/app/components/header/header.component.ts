@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
 import { setIsEditModeOn } from '../../store/session/session.actions';
 
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { Store } from "@ngrx/store";
 import { AppState, selectAppState } from '../../store';
 import { Subject, takeUntil } from 'rxjs';
@@ -23,6 +23,7 @@ import { selectIsEditModeOn } from '../../store/session/session.selectors';
         MatIconModule,
         NgIf,
         LoginModalComponent,
+        CommonModule,
     ]
 })
 export class HeaderComponent implements OnInit, OnDestroy {
@@ -31,26 +32,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
     isAuthenticated: boolean = false;
     hasEditPermission: boolean = false;
     editModeOn: boolean = false;
+    use_account_icon: string = 'no_accounts';
     
     
     constructor(public dialog: MatDialog, private store: Store<AppState>) {}
     
     ngOnInit(): void {
-        
-        // this.store.select(selectAppState)
-        // .pipe(takeUntil(this.unsubscribe$))
-        // .subscribe((appState: AppState) => {
-        //     if (appState) {
-        //         this.isAuthenticated = appState.userState.isAuthenticated;
-        //         this.hasEditPermission = appState.userState.permissions.includes('edit');
-        //         this.editModeOn = appState.sessionState.isEditModeOn;
-        //     }
-        // });
-
 
         this.store.select(selectIsAuthenticated)
             .pipe(takeUntil(this.unsubscribe$))
-            .subscribe(isAuthenticated => this.isAuthenticated = isAuthenticated);
+            .subscribe(isAuthenticated => {
+                this.isAuthenticated = isAuthenticated
+                if (this.isAuthenticated) {
+                    this.use_account_icon = 'account_circle';
+                }
+                else {
+                    this.use_account_icon = 'account_box';
+                }
+            });
 
         this.store.select(selectUserPermissions)
             .pipe(takeUntil(this.unsubscribe$))
