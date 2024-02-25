@@ -1,12 +1,13 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store'; // This should import your combined reducers
 import { NgModel } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 export const appConfig: ApplicationConfig = {
@@ -15,8 +16,9 @@ export const appConfig: ApplicationConfig = {
         provideRouter(routes),
         provideAnimationsAsync(),
         importProvidersFrom(
-            BrowserModule,
-             StoreModule.forRoot(reducers),
+            // CommonModule,
+            StoreModule.forRoot(reducers),
+            BrowserAnimationsModule,
         ),
         NgModel,
     ]

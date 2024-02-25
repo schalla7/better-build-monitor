@@ -19,7 +19,7 @@
 
     <span *ngIf="hasEditPermission">
         <mat-icon *ngIf="hasEditPermission" mat-icon edit-icon (click)="toggleEditMode(editModeOn)">edit</mat-icon>    
-        <mat-icon *ngIf="editModeOn">add</mat-icon>    
+        <mat-icon *ngIf="editModeOn" (click)="toggleAddModal()">add</mat-icon>    
         <mat-icon *ngIf="editModeOn">add</mat-icon>    
         <mat-icon *ngIf="editModeOn">add</mat-icon>    
         <mat-icon *ngIf="editModeOn">add</mat-icon>    

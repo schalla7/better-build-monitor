@@ -9,3 +9,16 @@ body {
 }
 
 
+/* Example of customizing Angular Material form fields in styles.scss or your component's scss */
+.mat-form-field {
+    width: 100%;
+    /* Make form fields take full width */
+    margin-bottom: 16px;
+    /* Add some space below each field */
+}
+
+/* Adjust the primary color for buttons */
+.mat-raised-button.mat-primary {
+    background-color: #007bff;
+    color: white;
+}

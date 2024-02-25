@@ -12,6 +12,7 @@ import { AppState, selectAppState } from '../../store';
 import { Subject, takeUntil } from 'rxjs';
 import { selectIsAuthenticated, selectUserPermissions } from '../../store/user/user.selectors';
 import { selectIsEditModeOn } from '../../store/session/session.selectors';
+import { AddJobCardModalComponent } from '../add-job-card-modal/add-job-card-modal.component';
 
 @Component({
     selector: 'app-header',
@@ -57,7 +58,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
         this.store.select(selectIsEditModeOn)
             .pipe(takeUntil(this.unsubscribe$))
-            .subscribe(isEditModeOn => this.editModeOn = isEditModeOn);
+            .subscribe(isEditModeOn => {
+                this.editModeOn = isEditModeOn;
+                // DEVTEST:
+                this.editModeOn = true;
+                this.hasEditPermission = true;
+            });
     }
     
     ngOnDestroy(): void {
@@ -69,6 +75,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
         return this.hasEditPermission && this.editModeOn;
     }
     
+    
+    
+    toggleEditMode(isEditModeOn: boolean): void {
+        isEditModeOn = !isEditModeOn;
+        console.log('in toggleEditMode(), setting isEditModeOn in the store to: ', isEditModeOn);
+        this.store.dispatch(setIsEditModeOn({ isEditModeOn }));   
+    }
+
     toggleAccountModal(): void {
         const dialogRef = this.dialog.open(LoginModalComponent, {
             width: '250px',
@@ -80,12 +94,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
             // Handle authentication logic here
         });
     }
-    
-    toggleEditMode(isEditModeOn: boolean): void {
-        isEditModeOn = !isEditModeOn;
-        console.log('in toggleEditMode(), setting isEditModeOn in the store to: ', isEditModeOn);
-        this.store.dispatch(setIsEditModeOn({ isEditModeOn }));
-        // this.editModeOn = !this.editModeOn;
+
+    toggleAddModal(): void {
+        const dialogRef = this.dialog.open(AddJobCardModalComponent, {
+            width: '600px',
+            // position: { top: '64px', right: '16px' } // Adjust 'top' as needed to align under the account icon
+        });
         
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The Add Job Card modal was closed');
+        });
     }
 }

@@ -1,0 +1,48 @@
+<div class="add-job-form">
+  <h2>Add New Job Monitor Card</h2>
+  <form [formGroup]="jobCardForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="label_title" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="label_description"></textarea>
+    </mat-form-field>
+
+    <div class="host-jobname-group">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Host</mat-label>
+        <input matInput formControlName="host" required>
+      </mat-form-field>
+      
+      <span class="slash">/</span>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Job Name</mat-label>
+        <input matInput formControlName="jobname" required>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Job URL</mat-label>
+      <input matInput [value]="jobURL" readonly>
+    </mat-form-field>
+
+    
+    <div class="submit-button-container">
+        <button
+            class="submit-btn"
+            mat-raised-button 
+            color="primary" 
+            type="submit" 
+            [disabled]="!jobCardForm.valid"
+            >Submit
+        </button>
+    </div>
+
+
+  </form>
+</div>

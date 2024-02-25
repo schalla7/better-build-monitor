@@ -1,0 +1,88 @@
+/* add-job-card-modal.component.scss */
+.add-job-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; // This ensures child elements (like buttons) stretch to fill the width
+    padding: 20px;
+    max-width: 600px; // Set a max-width for larger screens
+    margin: auto;
+
+    mat-form-field {
+        width: 100%; // Ensure each field takes full width
+        margin-bottom: 15px; // Adds a margin to the bottom of each form field
+    }
+
+    .host-jobname-group {
+        display: flex;
+        flex-direction: column; // This ensures fields appear one below the other
+
+        .slash {
+            display: none; // Hide the slash if it's causing layout issues, or adjust as needed
+        }
+    }
+
+    .submit-button-container {
+        margin-top: 20px; // Space above the button
+        display: flex;
+        justify-content: flex-end; // Align the button to the right or center as you prefer
+    }
+}
+
+// General button styling for a modern look
+.submit-button-container button.mat-raised-button {
+    font-size: 16px; // Bigger font size for better readability
+    padding: 10px 20px; // Generous padding for a larger click area
+    border: none; // Remove default border
+    border-radius: 4px; // Rounded corners for a softer look
+    background-color: #4CAF50; // A nice shade of green, but you can choose your color
+    color: white; // White text to stand out against the button color
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Subtle shadow for depth
+    transition: background-color 0.3s, box-shadow 0.3s; // Smooth transition for hover effects
+    min-width: 150px; // Minimum width for the button
+
+    &:hover {
+        background-color: #45A049; // Slightly darker shade on hover for feedback
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); // Larger shadow on hover for a "lifted" effect
+    }
+
+    &:active {
+        background-color: #3E8E41; // Even darker on click
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Smaller shadow to look "pressed"
+    }
+
+    &:disabled {
+        background-color: #C8E6C9; // Lighter color to indicate it's disabled
+        color: #A5D6A7;
+        box-shadow: none; // No shadow to look "flat" and inactive
+    }
+}
+
+/* Define a specific class for the submit button */
+.submit-btn {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    min-width: 150px;
+    cursor: pointer; // Make it clear that it's clickable
+    text-transform: uppercase; // Optional: Makes it look more button-like
+
+    &:hover {
+        background-color: #2e8032;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    &:active {
+        background-color: #3E8E41;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    &:disabled {
+        background-color: #adc2ae;
+        color: #829e83;
+        box-shadow: none;
+    }
+}

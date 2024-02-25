@@ -1,13 +1,19 @@
-// src/app/store/reducers/jobCards.reducer.ts
 import { createReducer, on } from '@ngrx/store';
 import { IJobCard } from '../../interfaces/jobcard.interface';
-import { setJobCards } from './jobs.actions';
+// import { addJobCard, setJobCards } from './jobs.actions';
+import * as JobActions from './jobs.actions';
+
 
 export const initialState: IJobCard[] = [];
 
 export const jobCardsReducer = createReducer(
   initialState,
-  on(setJobCards, (_, { jobCards }) => jobCards)
+  
+  // Handle setting the entire list
+  on(JobActions.setJobCards, (_, { jobCards }) => jobCards),
+  
+  // Handle adding a single job card
+  on(JobActions.addJobCard, (state, { jobCard }) => [...state, jobCard]),
 );
 
 // src/app/store/reducers/viewConfig.reducer.ts

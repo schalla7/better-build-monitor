@@ -8,10 +8,10 @@ export interface IJobCard {
     jobname: string;
     joburl: string;
   }
-  job: {
+  job?: {
     "active": boolean
   },
-  build: {
+  build?: {
     build_number: number;
     running_status: "completed" | "busy_running";
     completion_result?: "green" | "red" | "yellow";
@@ -19,11 +19,11 @@ export interface IJobCard {
     start_time: string;
     end_time?: string;
   },
-  view: {
+  view?: {
     gridpos: number;
     group_label: string;
   }
-  stats: {
+  stats?: {
     "last_red_days_ago": number;
     "consecutive_successes": number;
 
