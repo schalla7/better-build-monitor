@@ -1,3 +1,8 @@
 <div class="jobs-pane">
-  <app-job-card *ngFor="let jobCard of jobCards$ | async" [jobCard]="jobCard"></app-job-card>
+  <app-job-card 
+    *ngFor="let jobCard of jobCards$ | async" 
+    [jobCard]="jobCard"
+    [isSelected]="selectedJobCardId === jobCard.id"
+    (selected)="onJobCardSelected($event)">
+    ></app-job-card>
 </div>

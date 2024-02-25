@@ -14,6 +14,11 @@ export const jobCardsReducer = createReducer(
   
   // Handle adding a single job card
   on(JobActions.addJobCard, (state, { jobCard }) => [...state, jobCard]),
+
+  // Handle deleting a single job card
+  on(JobActions.deleteJobCard, (state, { jobCard }) => 
+    state.filter(card => card.id !== jobCard.id)
+  ),
 );
 
 // src/app/store/reducers/viewConfig.reducer.ts

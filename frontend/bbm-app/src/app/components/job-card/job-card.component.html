@@ -1,4 +1,10 @@
-<div class="job-card">
+<div 
+  class="job-card"
+  (click)="toggleSelection()"
+  (dblclick)="setCardEditMode()"
+  [ngClass]="{'selected': isSelected}"
+  
+    >
   <h2>{{ jobCard.label_title }}</h2>
   <p>{{ jobCard.label_description }}</p>
   
@@ -27,4 +33,13 @@
     <div>Last Red: {{ jobCard.stats?.last_red_days_ago }} days ago</div>
     <div>Consecutive Failures: {{ jobCard.stats?.consecutive_failures }}</div>
   </div>
+
+  <ng-container *ngIf="isSelected">
+    <button mat-icon-button (click)="setCardEditMode()">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button (click)="onDelete($event)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </ng-container>
 </div>

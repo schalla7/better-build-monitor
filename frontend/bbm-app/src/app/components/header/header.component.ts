@@ -61,8 +61,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
             .subscribe(isEditModeOn => {
                 this.editModeOn = isEditModeOn;
                 // DEVTEST:
-                this.editModeOn = true;
-                this.hasEditPermission = true;
+                // this.editModeOn = true;
+                // this.hasEditPermission = true;
             });
     }
     

@@ -20,6 +20,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './jobs-pane.component.scss'
 })
 export class JobsPaneComponent implements OnInit {
+  
+  selectedJobCardId: number | null = null;
+
   jobCards$: Observable<IJobCard[]>;
 
   constructor(private store: Store<AppState>) {
@@ -29,5 +32,9 @@ export class JobsPaneComponent implements OnInit {
 
   ngOnInit(): void {
     // No need to subscribe here if you're using the async pipe in your template
+  }
+
+  onJobCardSelected(jobCardId: number) {
+    this.selectedJobCardId = jobCardId;
   }
 }
