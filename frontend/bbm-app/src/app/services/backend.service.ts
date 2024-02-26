@@ -69,6 +69,29 @@ export class BackendService {
           consecutive_failures: 2
         }
       },
+      {
+        id: 3,
+        label_title: "Job C",
+        label_description: "This is the third job",
+        source_link: {
+          host: "jenkins.example.com",
+          jobname: "Job-C",
+          joburl: "https://jenkins.example.com/job/Job-C"
+        },
+        job: { active: true },
+        build: {
+          build_number: 102,
+          running_status: "busy_running",
+          start_time: "2023-09-02T11:00:00Z",
+        },
+        view: { gridpos: 2, group_label: "Group 1" },
+        stats: {
+          last_red_days_ago: 1,
+          consecutive_successes: 0,
+          last_green_days_ago: 5,
+          consecutive_failures: 2
+        }
+      },
       // Add more mock job cards as per the pattern above.
       // ...
     ];
