@@ -11,7 +11,7 @@ import { AppState } from '../../store';
 import { Subject, takeUntil } from 'rxjs';
 import { selectIsAuthenticated, selectUserPermissions } from '../../store/user/user.selectors';
 import { isAppGlobalEditModeOn } from '../../store/session/session.selectors';
-import { AddJobCardModalComponent } from '../add-job-card-modal/add-job-card-modal.component';
+import { AddJobCardModalComponent } from '../job-card-add/add-job-card-modal.component';
 import { setAppGlobalEditModeOn } from '../../store/session/session.actions';
 
 @Component({
@@ -60,9 +60,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe(isEditModeOn => {
                 this.editModeOn = isEditModeOn;
-                // DEVTEST:
-                // this.editModeOn = true;
-                // this.hasEditPermission = true;
             });
     }
     

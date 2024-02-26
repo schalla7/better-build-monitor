@@ -15,6 +15,8 @@ import { Observable, combineLatest, of } from 'rxjs';
 import { isAppGlobalEditModeOn } from '../../store/session/session.selectors';
 import { AsyncPipe } from '@angular/common';
 import { map } from 'rxjs/operators';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { JobCardEditComponent } from '../job-card-edit/job-card-edit.component';
 
 
 
@@ -34,7 +36,9 @@ import { map } from 'rxjs/operators';
     MatIconModule,
     ReactiveFormsModule,
     NgIf,
-    AsyncPipe
+    AsyncPipe,
+    DragDropModule,
+    JobCardEditComponent,
   ]
 })
 export class JobCardComponent {
@@ -81,6 +85,18 @@ export class JobCardComponent {
         this.store.dispatch(JobActions.deleteJobCard({ jobCard: this.jobCard }));
         // this.store.dispatch(addJobCard({ jobCard: newJobCard })); // Dispatch the action
       }
+    });
+  }
+
+
+  openEditModal(): void {
+    const dialogRef = this.dialog.open(JobCardEditComponent, {
+      width: '400px',
+      data: { jobCard: this.jobCard } // Pass the current job card as data to the modal
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle the result if needed
     });
   }
 }

@@ -1,8 +1,10 @@
-<div class="jobs-pane">
-  <app-job-card 
-    *ngFor="let jobCard of jobCards$ | async" 
-    [jobCard]="jobCard"
-    [isSelected]="selectedJobCardId === jobCard.id"
-    (selected)="onJobCardSelected($event)">
-    ></app-job-card>
+<div class="jobs-pane" cdkDropList (cdkDropListDropped)="drop($event)">
+  <div *ngFor="let jobCard of jobCards$ | async" [cdkDragDisabled]="!(isAppGlobalEditModeOn$ | async)" cdkDrag>
+    <app-job-card 
+      [jobCard]="jobCard"
+      [isSelected]="selectedJobCardId === jobCard.id"
+      (selected)="onJobCardSelected($event)"
+      >
+    </app-job-card>
+  </div>
 </div>

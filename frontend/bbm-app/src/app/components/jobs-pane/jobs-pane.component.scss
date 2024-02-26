@@ -1,3 +1,9 @@
 .jobs-pane {
-    padding-top: 20px; // Add your desired vertical padding value here
+    padding-top: 20px;
+    padding-left: 12px; // Add your desired horizontal padding value here
+    padding-right: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Default two columns. Adjust as needed */
+    gap: 10px;
 }

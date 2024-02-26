@@ -3,28 +3,14 @@
   (click)="toggleSelection()"
   (dblclick)="setCardEditMode()"
   [ngClass]="{'selected': isSelected}"
-  
+  (dblclick)="openEditModal()"
     >
   
   <!-- Card Title/Header Section -->
   <div class="card-header">
     <h2 class="title">{{ jobCard.label_title }}</h2>
-    
-    <div class="actions" *ngIf="isSelected && (isAppGlobalEditModeOn$ | async)">
-      <button mat-icon-button (click)="setCardEditMode()">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button mat-icon-button (click)="onDelete($event)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </div>
   </div>
 
-  <p>{{ jobCard.label_description }}</p>
-  
-  <div class="source-link">
-    <a [href]="jobCard.source_link.joburl" target="_blank">{{ jobCard.source_link.host }}/{{ jobCard.source_link.jobname }}</a>
-  </div>
   
   <div class="job-status" [ngClass]="jobCard.build?.running_status">
     Status: {{ jobCard.build?.running_status }}
@@ -37,16 +23,6 @@
     <div *ngIf="jobCard.build?.end_time">End Time: {{ jobCard.build?.end_time | date:'medium' }}</div>
   </div>
   
-  <div class="view">
-    Position: {{ jobCard.view?.gridpos }} in {{ jobCard.view?.group_label }}
-  </div>
-  
-  <div class="stats">
-    <div>Last Green: {{ jobCard.stats?.last_green_days_ago }} days ago</div>
-    <div>Consecutive Successes: {{ jobCard.stats?.consecutive_successes }}</div>
-    <div>Last Red: {{ jobCard.stats?.last_red_days_ago }} days ago</div>
-    <div>Consecutive Failures: {{ jobCard.stats?.consecutive_failures }}</div>
-  </div>
 
   
 </div>

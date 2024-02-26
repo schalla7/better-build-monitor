@@ -14,9 +14,12 @@ export class JobCardsService {
   constructor(private store: Store<AppState>) { }
 
   isTitleUnique(jobTitle: string): Observable<boolean> {
+    console.log('in job-cards.service.ts, isTitleUnique:', jobTitle);
     // Select all job cards from the store
     return this.store.select(selectAllJobCards).pipe(
+      
       map((jobCards: IJobCard[]) => {
+        console.log('Going to look through all of these jobCards in the list for existing title:', jobCards);
         // Check if any job card has the same title as the provided one
         const titleExists = jobCards.some(jobCard => jobCard.label_title.toLowerCase() === jobTitle.toLowerCase());
         // Return true if the title does not exist (i.e., is unique)

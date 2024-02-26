@@ -34,8 +34,8 @@ export class AddJobCardModalComponent {
   ) {
     this.jobCardForm = this.fb.group({
       label_title: ['',
-        [Validators.required], 
-        [this.uniqueTitleValidator.validateTitle()]
+        Validators.required, 
+        this.uniqueTitleValidator.validateTitle()
       ],
       label_description: [''], // Description - optional
       host: ['http://defaultHost.com', Validators.required], // Host - prepopulated with default value
@@ -64,6 +64,9 @@ export class AddJobCardModalComponent {
       console.log(this.jobCardForm.value);
       const newJobCard: IJobCard = this.prepareNewJobCardData(this.jobCardForm.value);
       this.store.dispatch(addJobCard({ jobCard: newJobCard })); // Dispatch the action
+      // Reset specific form controls
+      this.jobCardForm.controls['label_title'].setValue('');
+      this.jobCardForm.controls['label_description'].setValue('');
     }
   }
 

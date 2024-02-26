@@ -19,6 +19,14 @@ export const jobCardsReducer = createReducer(
   on(JobActions.deleteJobCard, (state, { jobCard }) => 
     state.filter(card => card.id !== jobCard.id)
   ),
+
+  // Handle reordering of job cards
+  on(JobActions.reorderJobCards, (state, { previousIndex, currentIndex }) => {
+      const reordered = [...state];
+      const [removed] = reordered.splice(previousIndex, 1);
+      reordered.splice(currentIndex, 0, removed);
+      return reordered;
+  }),
 );
 
 // src/app/store/reducers/viewConfig.reducer.ts

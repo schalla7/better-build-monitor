@@ -10,19 +10,16 @@ export class UniqueTitleValidator {
 
   validateTitle(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      if (!control.value) {
-        return of(null); // if control is empty return no error
-      }
-      return control.valueChanges.pipe(
-        debounceTime(500), // Debounce the input to avoid spamming the server
-        take(1), // Ensure the observable completes
-        switchMap(value =>
-          this.jobCardsService.isTitleUnique(value).pipe(
+        if (!control.value) {
+            return of(null); // if control is empty return no error
+        }
+        return this.jobCardsService.isTitleUnique(control.value).pipe(
+            debounceTime(500), // Debounce the input to avoid spamming the server
+            take(1), // Ensure the observable completes
             map(isUnique => (isUnique ? null : { titleNotUnique: true })),
             catchError(() => of(null)) // Handle the error, possibly returning a validation error
-          )
-        )
-      );
-    };
-  }
+            );
+        };
+    }
+
 }
