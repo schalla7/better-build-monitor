@@ -1,16 +1,16 @@
 // src/app/store/session.reducer.ts
 import { createReducer, on } from '@ngrx/store';
 import { ISession } from '../../interfaces/session.interface';
-import { setIsEditModeOn } from './session.actions';
+import { setAppGlobalEditModeOn } from './session.actions';
 
 export const initialSessionState: ISession = {
-  isEditModeOn: false,
+  isAppGlobalEditModeOn: false,
 };
 
 export const sessionReducer = createReducer(
   initialSessionState,
-  on(setIsEditModeOn, (state, { isEditModeOn }) => ({
+  on(setAppGlobalEditModeOn, (state, { isAppGlobalEditModeOn }) => ({
     ...state,
-    isEditModeOn, // Directly update isEditModeOn in the state
+    isAppGlobalEditModeOn, // Directly update isEditModeOn in the state
   }))
 );

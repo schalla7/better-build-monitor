@@ -5,7 +5,21 @@
   [ngClass]="{'selected': isSelected}"
   
     >
-  <h2>{{ jobCard.label_title }}</h2>
+  
+  <!-- Card Title/Header Section -->
+  <div class="card-header">
+    <h2 class="title">{{ jobCard.label_title }}</h2>
+    
+    <div class="actions" *ngIf="isSelected && (isAppGlobalEditModeOn$ | async)">
+      <button mat-icon-button (click)="setCardEditMode()">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="onDelete($event)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+
   <p>{{ jobCard.label_description }}</p>
   
   <div class="source-link">
@@ -34,12 +48,5 @@
     <div>Consecutive Failures: {{ jobCard.stats?.consecutive_failures }}</div>
   </div>
 
-  <ng-container *ngIf="isSelected">
-    <button mat-icon-button (click)="setCardEditMode()">
-      <mat-icon>edit</mat-icon>
-    </button>
-    <button mat-icon-button (click)="onDelete($event)">
-      <mat-icon>delete</mat-icon>
-    </button>
-  </ng-container>
+  
 </div>

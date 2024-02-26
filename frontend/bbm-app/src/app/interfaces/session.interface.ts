@@ -1,3 +1,3 @@
 export interface ISession {
-    isEditModeOn: boolean;
+    isAppGlobalEditModeOn: boolean;
 }

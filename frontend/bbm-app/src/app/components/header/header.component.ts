@@ -4,15 +4,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
-import { setIsEditModeOn } from '../../store/session/session.actions';
 
 import { CommonModule, NgIf } from '@angular/common';
 import { Store } from "@ngrx/store";
-import { AppState, selectAppState } from '../../store';
+import { AppState } from '../../store';
 import { Subject, takeUntil } from 'rxjs';
 import { selectIsAuthenticated, selectUserPermissions } from '../../store/user/user.selectors';
-import { selectIsEditModeOn } from '../../store/session/session.selectors';
+import { isAppGlobalEditModeOn } from '../../store/session/session.selectors';
 import { AddJobCardModalComponent } from '../add-job-card-modal/add-job-card-modal.component';
+import { setAppGlobalEditModeOn } from '../../store/session/session.actions';
 
 @Component({
     selector: 'app-header',
@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe(permissions => this.hasEditPermission = permissions.includes('edit'));
 
-        this.store.select(selectIsEditModeOn)
+        this.store.select(isAppGlobalEditModeOn)
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe(isEditModeOn => {
                 this.editModeOn = isEditModeOn;
@@ -80,7 +80,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     toggleEditMode(isEditModeOn: boolean): void {
         isEditModeOn = !isEditModeOn;
         console.log('in toggleEditMode(), setting isEditModeOn in the store to: ', isEditModeOn);
-        this.store.dispatch(setIsEditModeOn({ isEditModeOn }));   
+        this.store.dispatch(setAppGlobalEditModeOn({ isAppGlobalEditModeOn: isEditModeOn }));   
     }
 
     toggleAccountModal(): void {

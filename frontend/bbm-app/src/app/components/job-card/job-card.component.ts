@@ -11,6 +11,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import * as JobActions from '../../store/jobs/jobs.actions';
+import { Observable, combineLatest, of } from 'rxjs';
+import { isAppGlobalEditModeOn } from '../../store/session/session.selectors';
+import { AsyncPipe } from '@angular/common';
+import { map } from 'rxjs/operators';
+
 
 
 // In job-card.component.ts
@@ -29,6 +34,7 @@ import * as JobActions from '../../store/jobs/jobs.actions';
     MatIconModule,
     ReactiveFormsModule,
     NgIf,
+    AsyncPipe
   ]
 })
 export class JobCardComponent {
@@ -37,16 +43,26 @@ export class JobCardComponent {
 
   @Output() selected = new EventEmitter<number>();
 
-  // Inject Store if needed for dispatching actions
-  constructor(public dialog: MatDialog, private store: Store<AppState>) {}
+  isAppGlobalEditModeOn$: Observable<boolean>;
+  displayActions$: Observable<boolean>;
 
-  toggleSelection() {
-    this.selected.emit(this.jobCard.id);
+
+  // Inject Store if needed for dispatching actions
+  constructor(public dialog: MatDialog, private store: Store<AppState>) {
+    this.isAppGlobalEditModeOn$ = this.store.select(isAppGlobalEditModeOn);
+    this.displayActions$ = combineLatest([this.isAppGlobalEditModeOn$, of(this.isSelected)]).pipe(
+      map(([isEditMode, isSelected]) => isEditMode && isSelected)
+    );
   }
 
-  // toggleSelection() {
-  //   this.isSelected = !this.isSelected;
-  // }
+  toggleSelection() {
+    // this.isSelected = !this.isSelected;
+    // Update displayActions$ if necessary
+    this.displayActions$ = combineLatest([this.isAppGlobalEditModeOn$, of(this.isSelected)]).pipe(
+      map(([isEditMode, isSelected]) => isEditMode && isSelected)
+    );
+    this.selected.emit(this.jobCard.id);
+  }
 
   setCardEditMode() {
     // Dispatch an action or navigate to edit this card

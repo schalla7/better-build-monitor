@@ -5,9 +5,9 @@ import { AppState } from '../index'; // Adjust the path as necessary
 export const selectSessionState = (state: AppState) => state.sessionState;
 
 
-export const selectIsEditModeOn = createSelector(
+export const isAppGlobalEditModeOn = createSelector(
   selectSessionState,
-  (sessionState) => sessionState.isEditModeOn
+  (sessionState) => sessionState.isAppGlobalEditModeOn
 );
 
 export const selectSession = createSelector(

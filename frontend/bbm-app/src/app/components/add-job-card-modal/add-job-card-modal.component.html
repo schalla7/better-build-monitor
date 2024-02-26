@@ -4,7 +4,14 @@
 
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Title</mat-label>
-      <input matInput formControlName="label_title" required>
+      <input 
+        matInput 
+        formControlName="label_title" 
+        required
+        placeholder="Title">
+      <div *ngIf="jobCardForm.get('label_title')?.touched && jobCardForm.get('label_title')?.errors?.['titleNotUnique']">
+        Title is already taken.
+      </div>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="full-width">

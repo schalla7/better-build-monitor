@@ -9,6 +9,7 @@ import { IJobCard } from '../../interfaces/jobcard.interface';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store';
 import { addJobCard } from '../../store/jobs/jobs.actions';
+import { UniqueTitleValidator } from '../../validators/unique-title-validator';
 
 @Component({
   selector: 'app-add-job-card-modal',
@@ -26,9 +27,16 @@ import { addJobCard } from '../../store/jobs/jobs.actions';
 export class AddJobCardModalComponent {
   jobCardForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private store: Store<AppState>) {
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<AppState>,
+    private uniqueTitleValidator: UniqueTitleValidator,
+  ) {
     this.jobCardForm = this.fb.group({
-      label_title: ['', Validators.required], // Title - mandatory
+      label_title: ['',
+        [Validators.required], 
+        [this.uniqueTitleValidator.validateTitle()]
+      ],
       label_description: [''], // Description - optional
       host: ['http://defaultHost.com', Validators.required], // Host - prepopulated with default value
       jobname: ['', Validators.required], // Job Name

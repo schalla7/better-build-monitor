@@ -35,6 +35,8 @@ export class JobsPaneComponent implements OnInit {
   }
 
   onJobCardSelected(jobCardId: number) {
-    this.selectedJobCardId = jobCardId;
-  }
+  // Set the selectedJobCardId to the emitted job card ID
+  // If the same card is clicked again, you can toggle the selection off by setting it to null
+  this.selectedJobCardId = this.selectedJobCardId === jobCardId ? null : jobCardId;
+}
 }

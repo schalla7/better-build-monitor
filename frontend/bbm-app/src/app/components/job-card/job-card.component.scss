@@ -1,22 +1,46 @@
 .job-card {
-    border: 1px solid transparentize($color: #ccc, $amount: 0.5);
+    // border: 1px solid transparentize($color: #ccc, $amount: 0.5);
+    display: flex;
+    flex-direction: column;
     border-radius: 8px;
     padding: 16px;
     margin-bottom: 16px;
     background-color: rgb(0, 100, 0);
+    border-style: solid;
+    border-color: black;
+    border-width: 4 px;
     // background-color: rgb(139,0,0); // dark red
     // background-color: rgb(245, 148, 0); // orange
-    &:hover {
-        background-color: #f0f0f0c4; // Hover state
-    }
 
-    
+    &:hover {
+        // background-color: #f0f0f0c4; // Hover state
+        border-color: rgb(132, 197, 206); // Bright, noticeable color
+        // border-width: 4px; // Thicker border for prominence
+    }
 }
 
+
+
 .selected {
-    border-color: rgb(71, 179, 206); // Bright, noticeable color
-    border-width: 4px; // Thicker border for prominence
-    box-shadow: 0 0 10px rgba(71, 179, 206, 0.5); // Optional: Adds a glow effect
+    border-color: rgb(72, 148, 247); // Bright, noticeable color
+    border-width: 5px; // Thicker border for prominence
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    margin-top: 0;
+    flex-grow: 1;
+    /* Ensures title uses available space, pushing actions to the right */
+}
+
+.actions button {
+    margin-left: 8px;
+    /* Adds space between edit and delete buttons */
 }
 
 .job-card h2 {
