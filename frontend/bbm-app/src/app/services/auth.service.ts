@@ -29,18 +29,15 @@ export class AuthService {
                 permissions: ['edit'],
             },
         };
-        
         return new Observable<IUser>((observer) => {
             // Simulating the HTTP call
             setTimeout(() => {
                 if (mockedResponse.success) {
-                    
                     this.store.dispatch(loginSuccess({ user: mockedResponse.user }));
-
-                    
                     this.isAuthenticated = true;
                     this.userAuthorisedPermissions = mockedResponse.user.permissions;
                     observer.next(mockedResponse.user);
+                    console.log("Logged IN by auth service.");
                 } else {
                     // observer.next(null); // or observer.error({ message: 'Authentication failed' });
                     observer.error(new Error('Authentication failed'));
@@ -50,19 +47,27 @@ export class AuthService {
         });
     }
     
-    logout(): void {
-        // Here you would normally make an API call
 
-        this.store.dispatch(logout());
-        
-        this.isAuthenticated = false;
-        this.userAuthorisedPermissions = [];
+    logout(): Observable<IUser> {
+        // Here you would normally make an API call
+        return new Observable<IUser>((observer) => {
+            // Simulating the HTTP call
+            setTimeout(() => {
+                this.store.dispatch(logout());
+                this.isAuthenticated = false;
+                this.userAuthorisedPermissions = [];
+                observer.complete();
+            }, 300);
+            console.log("Logged out by auth service.");
+        });
     }
     
+
     get isLoggedIn(): boolean {
         return this.isAuthenticated;
     }
     
+
     hasPermissions(permissions: string[]): boolean {
         return permissions.every(permission => this.userAuthorisedPermissions.includes(permission));
     }

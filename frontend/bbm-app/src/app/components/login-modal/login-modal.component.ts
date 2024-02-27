@@ -28,13 +28,14 @@ export class LoginModalComponent implements OnInit {
   loginForm!: FormGroup;
   loginError: string | null = null;
 
-  
   @ViewChild('emailInput') emailInput!: ElementRef;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private dialogRef: MatDialogRef<LoginModalComponent>) { } // Inject the AuthService
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private dialogRef: MatDialogRef<LoginModalComponent>,
+  ) { } // Inject the AuthService
   
-  
-
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -46,19 +47,24 @@ export class LoginModalComponent implements OnInit {
     setTimeout(() => this.emailInput.nativeElement.focus(), 0);
   }
 
+  onLogout(): void {
+    this.authService.logout().subscribe(() => {
+      this.dialogRef.close();
+      // Optionally, perform additional actions on logout
+    });
+  }
+  
+
   onSubmit(): void {
   if (this.loginForm.valid) {
     this.authService.login(this.loginForm.value).subscribe({
       next: (user: IUser) => {
         console.log('Login successful', user.username);
-        // Close the modal here, if applicable
-        this.dialogRef.close(); 
+        this.dialogRef.close();
       },
       error: (error) => {
         console.error('Login failed', error.message);
         this.loginError = 'Invalid credentials provided. Please try again.';
-        // Show an error message
-        // This could be setting an error message in a variable and displaying it in the template
       }
     });
   }

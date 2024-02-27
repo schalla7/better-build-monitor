@@ -4,24 +4,20 @@
 <mat-dialog-content>
   
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    
-    <mat-form-field appearance="fill">
-      <mat-label>Email</mat-label>
-      <input #emailInput matInput formControlName="email" type="email" required autocomplete="username">
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input #emailInput matInput formControlName="email" type="email" required autocomplete="email">
+      </mat-form-field>
 
-    </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" required autocomplete="current-password">
+      </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Password</mat-label>
-      <input matInput formControlName="password" type="password" required autocomplete="current-password">
-    </mat-form-field>
+      <button mat-button type="submit">Login</button>
 
-    <button mat-button type="submit">Login</button>
-
-    <!-- Inside your login modal template -->
-    <p *ngIf="loginError" class="error">{{ loginError }}</p>
-
-
+      <!-- Inside your login modal template -->
+      <p *ngIf="loginError" class="error">{{ loginError }}</p>
   </form>
 
 </mat-dialog-content>

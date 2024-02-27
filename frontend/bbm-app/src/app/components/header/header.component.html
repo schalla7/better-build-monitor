@@ -44,7 +44,7 @@
         <mat-icon 
             mat-icon account-icon 
             [ngStyle]="{ 'color': isAuthenticated ? '#007FFF' : 'grey'  }"
-            (click)="toggleAccountModal()"
+            (click)="onAccountModalClicked()"
             >{{ use_account_icon }}
         </mat-icon>
         <!-- <mat-icon *ngIf="!isAuthenticated mat-icon account-icon">account_circle</mat-icon>
